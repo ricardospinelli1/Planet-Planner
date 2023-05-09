@@ -13,7 +13,5 @@ class AsteroidBelt {
   
   }
   
-  void removeBelt() {
-  
-  }
+
 }
