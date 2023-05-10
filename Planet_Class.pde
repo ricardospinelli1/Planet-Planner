@@ -3,24 +3,22 @@ class Planet {
   int mass;
   int size;
   int orbitRad;
-  int axialRotPeriod;
-  float eccentricity;
+  //float eccentricity;
   PVector position;
   PVector speed;
   color planetCol;
-  StarSystem starSys;
+  StarSystem starSys = null;
   
   //constructor
-  Planet(int m, int s, int or, int arp, color pc) {
+  Planet(int m, int s, int or, color pc) {
     this.mass = m;
     this.size = s;
     this.orbitRad = or;
-    this.axialRotPeriod = arp;
     this.planetCol = pc;
     this.speed = sqrt(g*this.starSys.star.mass/orbitRad);
     //float reducedMass = 1/(1/this.mass + 1/this.starSys.star.mass);
     //this.eccentricity = sqrt(1 + 
-    float period = 2*PI*sqrt(pow(this.orbitRad, 3)/g/this.starSys.star.mass);
+    //float period = 2*PI*sqrt(pow(this.orbitRad, 3)/g/this.starSys.star.mass);
     
   }
   
@@ -35,6 +33,7 @@ class Planet {
   }
   
   void updatePosition() {
-    //ellipse stuff
+    this.position.x = orbitRad*cos(t);
+    this.position.y = orbitRad*sin(t);
   }
 }
