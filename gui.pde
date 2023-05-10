@@ -78,7 +78,7 @@ public void CometsList(GDropList source, GEvent event) { //_CODE_:Comets_List:44
   println("Comets_List - GDropList >> GEvent." + event + " @ " + millis());
 } //_CODE_:Comets_List:441740:
 
-public void custom_slider1_change1(GCustomSlider source, GEvent event) { //_CODE_:Comet_Mass:236126:
+public void CometMass(GCustomSlider source, GEvent event) { //_CODE_:Comet_Mass:236126:
   println("Comet_Mass - GCustomSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:Comet_Mass:236126:
 
@@ -90,21 +90,21 @@ public void AnimationSpeed(GCustomSlider source, GEvent event) { //_CODE_:Animat
   println("Animation_Speed - GCustomSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:Animation_Speed:910349:
 
+public void demo1(GButton source, GEvent event) { //_CODE_:demo1:978270:
+  println("demo1 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:demo1:978270:
+
 public void demo2(GButton source, GEvent event) { //_CODE_:Demo2:985349:
   println("demo2 - GButton >> GEvent." + event + " @ " + millis());
 } //_CODE_:Demo2:985349:
 
-public void button2_click1(GButton source, GEvent event) { //_CODE_:button2:284743:
+public void demo3_click1(GButton source, GEvent event) { //_CODE_:button2:284743:
   println("button2 - GButton >> GEvent." + event + " @ " + millis());
 } //_CODE_:button2:284743:
 
-public void button3_click1(GButton source, GEvent event) { //_CODE_:button3:639019:
+public void demo4_click1(GButton source, GEvent event) { //_CODE_:button3:639019:
   println("button3 - GButton >> GEvent." + event + " @ " + millis());
 } //_CODE_:button3:639019:
-
-public void Demo1(GButton source, GEvent event) { //_CODE_:demo1:978270:
-  println("demo1 - GButton >> GEvent." + event + " @ " + millis());
-} //_CODE_:demo1:978270:
 
 
 
