@@ -19,19 +19,19 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:Windo
 } //_CODE_:Window_1:505961:
 
 public void NumPlanets(GCustomSlider source, GEvent event) { //_CODE_:Num_Planets:470663:
-  println("Num_Planets - GCustomSlider >> GEvent." + event + " @ " + millis());
+  //numPlanets
 } //_CODE_:Num_Planets:470663:
 
 public void PlanetColor(GDropList source, GEvent event) { //_CODE_:Planet_Color:928079:
-  println("Planet_Color - GDropList >> GEvent." + event + " @ " + millis());
+  //planetColour
 } //_CODE_:Planet_Color:928079:
 
 public void PlanetList(GDropList source, GEvent event) { //_CODE_:Planet_List:425558:
-  println("Planet_List - GDropList >> GEvent." + event + " @ " + millis());
+  //planetList
 } //_CODE_:Planet_List:425558:
 
 public void PlanetMass(GCustomSlider source, GEvent event) { //_CODE_:Planet_Mass:922625:
-  println("Planet_Mass - GCustomSlider >> GEvent." + event + " @ " + millis());
+  //planetMass
 } //_CODE_:Planet_Mass:922625:
 
 public void AxalRotPer(GCustomSlider source, GEvent event) { //_CODE_:Axal_Rotation_Period:972216:
