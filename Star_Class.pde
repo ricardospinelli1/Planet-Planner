@@ -4,8 +4,7 @@ class Star {
   int radius; //size
   PVector pos;
   PVector speed; // possibly needed for Binary Stars
-  
-  
+   
   //CONTRSUCTORS
   Star(int m, int r) {
     this.mass = m;
@@ -19,5 +18,5 @@ class Star {
     fill(255); 
     noStroke();
     circle(this.pos.x, this.pos.y, this.radius);
-  }
+  } 
 }
