@@ -5,7 +5,7 @@ class Planet {
   int orbitRad;
   //float eccentricity;
   PVector position;
-  PVector speed;
+  float speed;
   color planetCol;
   StarSystem starSys = null;
   
@@ -15,8 +15,8 @@ class Planet {
     this.size = s;
     this.orbitRad = or;
     this.planetCol = pc;
-    this.speed = sqrt(g*this.starSys.star.mass/orbitRad);
-    //float reducedMass = 1/(1/this.mass + 1/this.starSys.star.mass);
+    this.speed = sqrt(g*this.starSys.starMass/orbitRad);
+ 
     //this.eccentricity = sqrt(1 + 
     //float period = 2*PI*sqrt(pow(this.orbitRad, 3)/g/this.starSys.star.mass);
     
@@ -33,7 +33,7 @@ class Planet {
   }
   
   void updatePosition() {
-    this.position.x = orbitRad*cos(t);
-    this.position.y = orbitRad*sin(t);
+    this.position.x = orbitRad*cos(t/this.speed) + width/2.0;
+    this.position.y = orbitRad*sin(t/this.speed) - height/2.0;
   }
 }

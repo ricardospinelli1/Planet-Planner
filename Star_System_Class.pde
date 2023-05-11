@@ -3,13 +3,24 @@ class StarSystem {
   ArrayList<Star> centralBody = new ArrayList<Star>();
   ArrayList<Planet> planets = new ArrayList<Planet>();
   ArrayList<AsteroidBelt> belts = new ArrayList<AsteroidBelt>();
+  int starMass = 0;
   
   //constructor
+  StarSystem(Star s1, Star s2) {
+    this.starMass = s1.mass + s2.mass;   
+    this.centralBody.add(s1);
+    this.centralBody.add(s2);
+  }
   
-  //methods
-  void addStar(Star s) {
+  StarSystem(Star s) {
+    this.starMass = s.mass;
     this.centralBody.add(s);
   }
+  
+  //methods
+  //void addStar(Star s) {
+  //  this.centralBody.add(s);
+  //}
   
   void addPlanet(Planet p) {
     this.planets.add(p);
