@@ -1,7 +1,7 @@
 class AsteroidBelt {
   //fields
   int orbitalRadius;
-  StarSystem starSys = null;
+  StarSystem starSys;
   
   //constructors
   AsteroidBelt(int or) {
@@ -10,9 +10,9 @@ class AsteroidBelt {
   
   //methods
   
-  void drawBelt() {
+  //void drawBelt() {
   
-  }
+  //}
   
 
 }

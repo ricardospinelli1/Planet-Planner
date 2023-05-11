@@ -25,6 +25,7 @@ class StarSystem {
   void addPlanet(Planet p) {
     this.planets.add(p);
     p.starSys = this;
+    p.speed = sqrt(g*this.starMass/p.orbitRad);
   }
   
   void removePlanet(Planet p) {
@@ -41,9 +42,9 @@ class StarSystem {
   }
   
   void drawSystem() { 
-    for (int i = 0; i < this.belts.size(); i++) {
-      this.belts.get(i).drawBelt();    
-    }
+    //for (int i = 0; i < this.belts.size(); i++) {
+    //  this.belts.get(i).drawBelt();    
+    //}
     
     for (int i = 0; i < this.centralBody.size(); i++) {
       this.centralBody.get(i).drawStar();

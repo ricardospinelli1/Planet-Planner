@@ -15,7 +15,6 @@ class Planet {
     this.size = s;
     this.orbitRad = or;
     this.planetCol = pc;
-    this.speed = sqrt(g*this.starSys.starMass/orbitRad);
  
     //this.eccentricity = sqrt(1 + 
     //float period = 2*PI*sqrt(pow(this.orbitRad, 3)/g/this.starSys.star.mass);
