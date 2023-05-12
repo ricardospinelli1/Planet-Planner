@@ -4,10 +4,11 @@ class Planet {
   int size;
   int orbitRad;
   //float eccentricity;
-  PVector position;
-  float speed;
+  float posX = 0;
+  float posY = 0;
+  float speed = 1;
   color planetCol;
-  StarSystem starSys = null;
+  StarSystem starSys;
   
   //constructor
   Planet(int m, int s, int or, color pc) {
@@ -26,13 +27,13 @@ class Planet {
   void drawPlanet() {
     noStroke();
     fill(this.planetCol);
-    circle(this.position.x, this.position.y, this.size);
+    circle(this.posX, this.posY, this.size);
     
     this.updatePosition();
   }
   
   void updatePosition() {
-    this.position.x = orbitRad*cos(t/this.speed) + width/2.0;
-    this.position.y = orbitRad*sin(t/this.speed) - height/2.0;
+    this.posX = orbitRad*cos(t*0.1/this.speed) + 250;
+    this.posY = orbitRad*sin(t*0.1/this.speed) - 250;
   }
 }

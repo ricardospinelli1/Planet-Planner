@@ -11,19 +11,24 @@ StarSystem sunSys;
 
 void setup() {
   size(500, 500);
-  Planet earth = new Planet(100, 30, 300, color(0, 0, 220));
-  Planet mars = new Planet(30, 10, 500, color(230, 0, 0));
-  Star sun = new Star(500, 500);
-  StarSystem sunSys = new StarSystem(sun);
+  earth = new Planet(100, 30, 300, color(0, 0, 220));
+  mars = new Planet(30, 10, 500, color(230, 0, 0));
+  sun = new Star(500, 200);
+  sunSys = new StarSystem(sun);
   //createGUI();
   
   sunSys.addPlanet(earth);
   sunSys.addPlanet(mars);
+  frameRate(1);
+  
+  
 }
 
 void draw() {
   background(0);
-  //sunSys.drawSystem();
-  
+  sunSys.drawSystem();
+  //println(earth.mass);
   earth.drawPlanet();
+  //earth.updatePosition();
+  //sun.drawStar();
 }
