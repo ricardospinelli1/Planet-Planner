@@ -10,9 +10,12 @@ class AsteroidBelt {
   
   //methods
   
-  //void drawBelt() {
-  
-  //}
+  void drawBelt() {
+    fill(40);
+    circle(halfway, halfway, orbitalRadius + 20);
+    fill(0);
+    circle(halfway, halfway, orbitalRadius - 20);  
+  }
   
 
 }

@@ -33,7 +33,7 @@ class Planet {
   }
   
   void updatePosition() {
-    this.pos.x = orbitRad*cos(t*5*this.speed/this.orbitRad) + width/2.0;
-    this.pos.y = orbitRad*sin(t*5*this.speed/this.orbitRad) + height/2.0;    
+    this.pos.x = orbitRad*cos(t*5*this.speed/this.orbitRad) + halfway;
+    this.pos.y = orbitRad*sin(t*5*this.speed/this.orbitRad) + halfway;    
   } 
 }
