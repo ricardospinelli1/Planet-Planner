@@ -18,10 +18,6 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:windo
   appc.background(230);
 } //_CODE_:window1:934291:
 
-public void PlanetRadius(GCustomSlider source, GEvent event) { //_CODE_:Planet_Radius:620668:
-  println("Planet_Radius - GCustomSlider >> GEvent." + event + " @ " + millis());
-} //_CODE_:Planet_Radius:620668:
-
 public void a(GDropList source, GEvent event) { //_CODE_:Planet_List:332843:
   println("Planet_List - GDropList >> GEvent." + event + " @ " + millis());
 } //_CODE_:Planet_List:332843:
@@ -29,6 +25,82 @@ public void a(GDropList source, GEvent event) { //_CODE_:Planet_List:332843:
 public void slider1_change1(GSlider source, GEvent event) { //_CODE_:NumPlanetsSlider:553222:
   println("NumPlanetsSlider - GSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:NumPlanetsSlider:553222:
+
+public void slider1_change2(GSlider source, GEvent event) { //_CODE_:slider1:676364:
+  println("slider1 - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:slider1:676364:
+
+public void slider2_change1(GSlider source, GEvent event) { //_CODE_:slider2:557210:
+  println("slider2 - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:slider2:557210:
+
+public void slider3_change1(GSlider source, GEvent event) { //_CODE_:slider3:573944:
+  println("slider3 - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:slider3:573944:
+
+public void AddMoon(GButton source, GEvent event) { //_CODE_:AddMoonButton:496052:
+  println("AddMoonButton - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:AddMoonButton:496052:
+
+public void RemoveMoon(GButton source, GEvent event) { //_CODE_:RemoveMoonButton:560305:
+  println("RemoveMoonButton - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:RemoveMoonButton:560305:
+
+public void slider4_change1(GSlider source, GEvent event) { //_CODE_:slider4:776544:
+  println("slider4 - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:slider4:776544:
+
+public void SunType(GDropList source, GEvent event) { //_CODE_:SunTypeList:644116:
+  println("SunTypeList - GDropList >> GEvent." + event + " @ " + millis());
+} //_CODE_:SunTypeList:644116:
+
+public void slider5_change1(GSlider source, GEvent event) { //_CODE_:slider5:622663:
+  println("slider5 - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:slider5:622663:
+
+public void BeltList(GDropList source, GEvent event) { //_CODE_:Belt_List:406675:
+  println("Belt_List - GDropList >> GEvent." + event + " @ " + millis());
+} //_CODE_:Belt_List:406675:
+
+public void SunMass(GSlider source, GEvent event) { //_CODE_:SunMassSlider:328546:
+  println("SunMassSlider - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:SunMassSlider:328546:
+
+public void slider6_change1(GSlider source, GEvent event) { //_CODE_:slider6:899239:
+  println("slider6 - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:slider6:899239:
+
+public void slider7_change1(GSlider source, GEvent event) { //_CODE_:slider7:355797:
+  println("slider7 - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:slider7:355797:
+
+public void CometList(GDropList source, GEvent event) { //_CODE_:Comet_List:674187:
+  println("Comet_List - GDropList >> GEvent." + event + " @ " + millis());
+} //_CODE_:Comet_List:674187:
+
+public void slider8_change1(GSlider source, GEvent event) { //_CODE_:slider8:306213:
+  println("slider7 - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:slider8:306213:
+
+public void slider9_change1(GSlider source, GEvent event) { //_CODE_:slider9:394760:
+  println("slider8 - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:slider9:394760:
+
+public void button1_click1(GButton source, GEvent event) { //_CODE_:button1:357916:
+  println("button1 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:button1:357916:
+
+public void button2_click1(GButton source, GEvent event) { //_CODE_:button2:664558:
+  println("button2 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:button2:664558:
+
+public void button3_click1(GButton source, GEvent event) { //_CODE_:button3:922955:
+  println("button3 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:button3:922955:
+
+public void button4_click1(GButton source, GEvent event) { //_CODE_:button4:484243:
+  println("button4 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:button4:484243:
 
 
 
@@ -50,11 +122,6 @@ public void createGUI(){
   NumPlanetLabel = new GLabel(window1, 6, 84, 108, 20);
   NumPlanetLabel.setText("Number of Planets");
   NumPlanetLabel.setOpaque(false);
-  Planet_Radius = new GCustomSlider(window1, 438, 102, 120, 40, "grey_blue");
-  Planet_Radius.setLimits(0.5, 0.0, 1.0);
-  Planet_Radius.setNumberFormat(G4P.DECIMAL, 2);
-  Planet_Radius.setOpaque(false);
-  Planet_Radius.addEventHandler(this, "PlanetRadius");
   PlanetMassLabel = new GLabel(window1, 150, 84, 80, 20);
   PlanetMassLabel.setText("Mass");
   PlanetMassLabel.setOpaque(false);
@@ -72,6 +139,119 @@ public void createGUI(){
   NumPlanetsSlider.setNumberFormat(G4P.DECIMAL, 2);
   NumPlanetsSlider.setOpaque(false);
   NumPlanetsSlider.addEventHandler(this, "slider1_change1");
+  slider1 = new GSlider(window1, 150, 102, 100, 40, 10.0);
+  slider1.setLimits(0.5, 0.0, 1.0);
+  slider1.setNumberFormat(G4P.DECIMAL, 2);
+  slider1.setOpaque(false);
+  slider1.addEventHandler(this, "slider1_change2");
+  slider2 = new GSlider(window1, 294, 102, 100, 40, 10.0);
+  slider2.setLimits(0.5, 0.0, 1.0);
+  slider2.setNumberFormat(G4P.DECIMAL, 2);
+  slider2.setOpaque(false);
+  slider2.addEventHandler(this, "slider2_change1");
+  slider3 = new GSlider(window1, 438, 102, 100, 40, 10.0);
+  slider3.setLimits(0.5, 0.0, 1.0);
+  slider3.setNumberFormat(G4P.DECIMAL, 2);
+  slider3.setOpaque(false);
+  slider3.addEventHandler(this, "slider3_change1");
+  AddMoonButton = new GButton(window1, 162, 36, 80, 30);
+  AddMoonButton.setText("Add_Moon");
+  AddMoonButton.addEventHandler(this, "AddMoon");
+  RemoveMoonButton = new GButton(window1, 258, 36, 80, 30);
+  RemoveMoonButton.setText("Remove_Moon");
+  RemoveMoonButton.addEventHandler(this, "RemoveMoon");
+  StarLabel = new GLabel(window1, 6, 162, 80, 20);
+  StarLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  StarLabel.setText("Stars:");
+  StarLabel.setOpaque(false);
+  slider4 = new GSlider(window1, 6, 210, 100, 40, 10.0);
+  slider4.setLimits(0.5, 0.0, 1.0);
+  slider4.setNumberFormat(G4P.DECIMAL, 2);
+  slider4.setOpaque(false);
+  slider4.addEventHandler(this, "slider4_change1");
+  StarSizeLabel = new GLabel(window1, 6, 192, 80, 20);
+  StarSizeLabel.setText("Star Size:");
+  StarSizeLabel.setOpaque(false);
+  SunTypeList = new GDropList(window1, 132, 216, 90, 80, 3, 10);
+  SunTypeList.setItems(loadStrings("list_644116"), 0);
+  SunTypeList.addEventHandler(this, "SunType");
+  AsteroidLabel = new GLabel(window1, 276, 162, 80, 20);
+  AsteroidLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  AsteroidLabel.setText("Asteroids:");
+  AsteroidLabel.setOpaque(false);
+  BeltRadiusLabel = new GLabel(window1, 276, 264, 80, 20);
+  BeltRadiusLabel.setText("Belt Radius:");
+  BeltRadiusLabel.setOpaque(false);
+  slider5 = new GSlider(window1, 276, 282, 100, 40, 10.0);
+  slider5.setLimits(0.5, 0.0, 1.0);
+  slider5.setNumberFormat(G4P.DECIMAL, 2);
+  slider5.setOpaque(false);
+  slider5.addEventHandler(this, "slider5_change1");
+  Belt_List = new GDropList(window1, 402, 222, 90, 80, 3, 10);
+  Belt_List.setItems(loadStrings("list_406675"), 0);
+  Belt_List.addEventHandler(this, "BeltList");
+  CometsLabel = new GLabel(window1, 6, 348, 80, 20);
+  CometsLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  CometsLabel.setText("Comets:");
+  CometsLabel.setOpaque(false);
+  SunMassSlider = new GSlider(window1, 6, 276, 100, 40, 10.0);
+  SunMassSlider.setLimits(0.5, 0.0, 1.0);
+  SunMassSlider.setNumberFormat(G4P.DECIMAL, 2);
+  SunMassSlider.setOpaque(false);
+  SunMassSlider.addEventHandler(this, "SunMass");
+  SunMassLabel = new GLabel(window1, 6, 258, 90, 18);
+  SunMassLabel.setText("Sun Mass");
+  SunMassLabel.setOpaque(false);
+  slider6 = new GSlider(window1, 6, 390, 100, 40, 10.0);
+  slider6.setLimits(0.5, 0.0, 1.0);
+  slider6.setNumberFormat(G4P.DECIMAL, 2);
+  slider6.setOpaque(false);
+  slider6.addEventHandler(this, "slider6_change1");
+  NumCometsLabel = new GLabel(window1, 6, 372, 114, 20);
+  NumCometsLabel.setText("Number of Comets");
+  NumCometsLabel.setOpaque(false);
+  slider7 = new GSlider(window1, 276, 210, 100, 40, 10.0);
+  slider7.setLimits(0.5, 0.0, 1.0);
+  slider7.setNumberFormat(G4P.DECIMAL, 2);
+  slider7.setOpaque(false);
+  slider7.addEventHandler(this, "slider7_change1");
+  NumBeltLabel = new GLabel(window1, 276, 192, 96, 20);
+  NumBeltLabel.setText("Number of Belts");
+  NumBeltLabel.setOpaque(false);
+  Comet_List = new GDropList(window1, 150, 396, 90, 80, 3, 10);
+  Comet_List.setItems(loadStrings("list_674187"), 0);
+  Comet_List.addEventHandler(this, "CometList");
+  slider8 = new GSlider(window1, 6, 456, 100, 40, 10.0);
+  slider8.setLimits(0.5, 0.0, 1.0);
+  slider8.setNumberFormat(G4P.DECIMAL, 2);
+  slider8.setOpaque(false);
+  slider8.addEventHandler(this, "slider8_change1");
+  CometRadiusLabel = new GLabel(window1, 6, 438, 80, 20);
+  CometRadiusLabel.setText("Orbit Radius");
+  CometRadiusLabel.setOpaque(false);
+  AnimationSpeedLabel = new GLabel(window1, 276, 348, 102, 20);
+  AnimationSpeedLabel.setText("Animation Speed:");
+  AnimationSpeedLabel.setOpaque(false);
+  slider9 = new GSlider(window1, 276, 372, 100, 40, 10.0);
+  slider9.setLimits(0.5, 0.0, 1.0);
+  slider9.setNumberFormat(G4P.DECIMAL, 2);
+  slider9.setOpaque(false);
+  slider9.addEventHandler(this, "slider9_change1");
+  button1 = new GButton(window1, 276, 474, 80, 30);
+  button1.setText("Face text");
+  button1.addEventHandler(this, "button1_click1");
+  button2 = new GButton(window1, 378, 474, 80, 30);
+  button2.setText("Face text");
+  button2.addEventHandler(this, "button2_click1");
+  button3 = new GButton(window1, 276, 522, 80, 30);
+  button3.setText("Face text");
+  button3.addEventHandler(this, "button3_click1");
+  button4 = new GButton(window1, 378, 522, 80, 30);
+  button4.setText("Face text");
+  button4.addEventHandler(this, "button4_click1");
+  DemoLabel = new GLabel(window1, 276, 444, 80, 20);
+  DemoLabel.setText("Demos:");
+  DemoLabel.setOpaque(false);
   window1.loop();
 }
 
@@ -80,9 +260,38 @@ public void createGUI(){
 GWindow window1;
 GLabel planetLabel; 
 GLabel NumPlanetLabel; 
-GCustomSlider Planet_Radius; 
 GLabel PlanetMassLabel; 
 GLabel OrbitRadiusLabel; 
 GLabel PlanetRadiusLabel; 
 GDropList Planet_List; 
 GSlider NumPlanetsSlider; 
+GSlider slider1; 
+GSlider slider2; 
+GSlider slider3; 
+GButton AddMoonButton; 
+GButton RemoveMoonButton; 
+GLabel StarLabel; 
+GSlider slider4; 
+GLabel StarSizeLabel; 
+GDropList SunTypeList; 
+GLabel AsteroidLabel; 
+GLabel BeltRadiusLabel; 
+GSlider slider5; 
+GDropList Belt_List; 
+GLabel CometsLabel; 
+GSlider SunMassSlider; 
+GLabel SunMassLabel; 
+GSlider slider6; 
+GLabel NumCometsLabel; 
+GSlider slider7; 
+GLabel NumBeltLabel; 
+GDropList Comet_List; 
+GSlider slider8; 
+GLabel CometRadiusLabel; 
+GLabel AnimationSpeedLabel; 
+GSlider slider9; 
+GButton button1; 
+GButton button2; 
+GButton button3; 
+GButton button4; 
+GLabel DemoLabel; 
