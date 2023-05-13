@@ -26,6 +26,8 @@ class StarSystem {
     this.planets.add(p);
     p.starSys = this;
     p.speed = sqrt(g*this.starMass/p.orbitRad);
+    //p.pos.x = p.orbitRad + width/2.0;
+    //p.pos.y = height/2.0;
   }
   
   void removePlanet(Planet p) {

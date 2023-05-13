@@ -2,7 +2,7 @@ class Star {
   //FIELDS
   int mass;
   int radius; //size
-  PVector pos = new PVector (250, 250);
+  PVector pos = new PVector (width/2.0, height/2.0);
   //PVector speed; // possibly needed for Binary Stars
    
   //CONTRSUCTORS
