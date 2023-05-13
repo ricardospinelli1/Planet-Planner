@@ -1,6 +1,6 @@
-//class Moon {
-//  //FIELDS
+class Moon {
+  //FIELDS
   
-//  //CONTRUCTORS
-//  //METHODS
-//}
+  //CONTRUCTORS
+  //METHODS
+}

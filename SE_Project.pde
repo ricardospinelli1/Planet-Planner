@@ -21,9 +21,7 @@ void setup() {
     sun = new Star(500, 120);
     sys = new StarSystem(sun);
     astBelt = new AsteroidBelt(700);
-    
-    
-    
+   
     sys.addPlanet(earth);
     sys.addPlanet(mars);
     sys.addAsteroidBelt(astBelt);
