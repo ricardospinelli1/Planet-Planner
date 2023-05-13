@@ -2,16 +2,13 @@ class Star {
   //FIELDS
   int mass;
   int radius; //size
-  PVector pos = new PVector (250, 250);
+  PVector pos = new PVector (width/2, height/2);
   //PVector speed; // possibly needed for Binary Stars
    
   //CONTRSUCTORS
   Star(int m, int r) {
     this.mass = m;
     this.radius = r;
-
-    //this.pos.x = 250;
-    //this.pos.y = 250;
   }
   
   //METHODS
@@ -20,4 +17,8 @@ class Star {
     noStroke();
     circle(this.pos.x, this.pos.y, this.radius);
   } 
+  
+  void determineStarType() {
+  
+  }
 }
