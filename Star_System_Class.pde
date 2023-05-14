@@ -18,9 +18,7 @@ class StarSystem {
   }
   
   //methods
-  //void addStar(Star s) {
-  //  this.centralBody.add(s);
-  //}
+
   
   void addPlanet(Planet p) {
     this.planets.add(p);
@@ -42,9 +40,9 @@ class StarSystem {
   }
   
   void drawSystem() { 
-    //for (int i = 0; i < this.belts.size(); i++) {
-    //  this.belts.get(i).drawBelt();    
-    //}
+    for (int i = 0; i < this.belts.size(); i++) {
+      this.belts.get(i).drawBelt();    
+    }
     
     for (int i = 0; i < this.centralBody.size(); i++) {
       this.centralBody.get(i).drawStar();
