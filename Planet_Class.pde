@@ -7,8 +7,12 @@ class Planet {
   float speed = 0.1;
   color planetCol;
   StarSystem starSys;
+  boolean showPath = true;
+  float peri;
+  float ape;
+  float x, y, A, B;
    
-  //extra fields for newton gravity
+  //fields for newton gravity
   PVector acc;
   PVector velocity;
   boolean circularOrb;
@@ -30,10 +34,14 @@ class Planet {
     this.planetCol = pc; 
     this.pos = new PVector(halfway, halfway - this.orbitRad);
     this.circularOrb = false;
+    this.ape = or;
   }
   
   //methods  
   void drawPlanet() {
+    if (this.showPath)
+      this.drawPath();
+      
     noStroke();
     fill(this.planetCol);
     circle(this.pos.x, this.pos.y, this.size);
@@ -63,5 +71,30 @@ class Planet {
     
     PVector deltaPos = PVector.mult(this.velocity, deltaT);
     this.pos.add(deltaPos);
+  }
+  
+  void drawPath() {
+    
+    if (abs(this.pos.x - halfway) < 0.8 && this.pos.y > halfway) {
+      this.peri = this.pos.y - halfway;
+      float a = (this.peri + this.ape)/2;
+      PVector centre = new PVector(halfway, halfway - this.ape + a);
+      float dist = this.ape - this.peri;
+      float b = sqrt(pow(a, 2) - pow(dist/2, 2))*2;
+      noFill();
+      stroke(255);
+      ellipse(centre.x, centre.y, a*2, b);
+      this.x = centre.x;
+      this.y = centre.y;
+      this.A = a*2;
+      this.B = b;
+    } 
+    
+    else {
+      noFill();      
+      stroke(255);
+      ellipse(this.x, this.y, this.A, this.B);
+    }
+    
   }
 }
