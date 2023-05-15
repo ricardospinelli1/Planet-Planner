@@ -55,7 +55,7 @@ public void StarSize(GSlider source, GEvent event) { //_CODE_:StarSizeSlider:776
 public void SunType(GDropList source, GEvent event) { //_CODE_:SunTypeList:644116:
   println("SunTypeList - GDropList >> GEvent." + event + " @ " + millis());
   
-  sun.starType = SunTypeList.getSelectedText();
+  sun.starType = SunTypeList.getSelectedText(); 
 } //_CODE_:SunTypeList:644116:
 
 public void BeltOR(GSlider source, GEvent event) { //_CODE_:BeltORSlider:622663:
@@ -171,7 +171,7 @@ public void createGUI(){
   StarSizeSlider = new GSlider(window1, 6, 204, 100, 60, 10.0);
   StarSizeSlider.setShowValue(true);
   StarSizeSlider.setShowLimits(true);
-  StarSizeSlider.setLimits(100, 75, 200);
+  StarSizeSlider.setLimits(100, 75, 150);
   StarSizeSlider.setShowTicks(true);
   StarSizeSlider.setNumberFormat(G4P.INTEGER, 0);
   StarSizeSlider.setOpaque(false);
