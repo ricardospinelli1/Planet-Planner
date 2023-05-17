@@ -11,8 +11,8 @@ class AsteroidBelt {
   //methods  
   void drawBelt() {
     fill(40);
-    circle(halfway, halfway, orbitalRadius + 20);
+    circle(halfway, halfway, orbitalRadius + 5);
     fill(0);
-    circle(halfway, halfway, orbitalRadius - 20);  
+    circle(halfway, halfway, orbitalRadius - 5);  
   }
 }

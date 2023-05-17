@@ -68,6 +68,8 @@ public void BeltList(GDropList source, GEvent event) { //_CODE_:Belt_List:406675
 
 public void SunMass(GSlider source, GEvent event) { //_CODE_:SunMassSlider:328546:
   println("SunMassSlider - GSlider >> GEvent." + event + " @ " + millis());
+  
+  sys.starMass = int(SunMassSlider.getValueF());
 } //_CODE_:SunMassSlider:328546:
 
 public void Num_Comets(GSlider source, GEvent event) { //_CODE_:NumCometsSlider:899239:
@@ -82,7 +84,7 @@ public void CometList(GDropList source, GEvent event) { //_CODE_:Comet_List:6741
   println("Comet_List - GDropList >> GEvent." + event + " @ " + millis());
 } //_CODE_:Comet_List:674187:
 
-public void CometOR(GSlider source, GEvent event) { //_CODE_:CometORSlider:306213:
+public void CometOR(GSlider source, GEvent event) { //_CODE_:CometORSlider:306213: 
   println("slider7 - GSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:CometORSlider:306213:
 
@@ -90,21 +92,21 @@ public void Animation_Speed(GSlider source, GEvent event) { //_CODE_:AnimationSp
   println("slider8 - GSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:AnimationSpeedSlider:394760:
 
-public void button1_click1(GButton source, GEvent event) { //_CODE_:button1:357916:
+public void demo1(GButton source, GEvent event) { //_CODE_:demo1button:357916:
   println("button1 - GButton >> GEvent." + event + " @ " + millis());
-} //_CODE_:button1:357916:
+} //_CODE_:demo1button:357916:
 
-public void button2_click1(GButton source, GEvent event) { //_CODE_:button2:664558:
+public void demo2(GButton source, GEvent event) { //_CODE_:demo2button:664558:
   println("button2 - GButton >> GEvent." + event + " @ " + millis());
-} //_CODE_:button2:664558:
+} //_CODE_:demo2button:664558:
 
-public void button3_click1(GButton source, GEvent event) { //_CODE_:button3:922955:
+public void demo3(GButton source, GEvent event) { //_CODE_:demo3button:922955:
   println("button3 - GButton >> GEvent." + event + " @ " + millis());
-} //_CODE_:button3:922955:
+} //_CODE_:demo3button:922955:
 
-public void button4_click1(GButton source, GEvent event) { //_CODE_:button4:484243:
+public void demo4(GButton source, GEvent event) { //_CODE_:demo4button:484243:
   println("button4 - GButton >> GEvent." + event + " @ " + millis());
-} //_CODE_:button4:484243:
+} //_CODE_:demo4button:484243:
 
 
 
@@ -171,7 +173,7 @@ public void createGUI(){
   StarSizeSlider = new GSlider(window1, 6, 204, 100, 60, 10.0);
   StarSizeSlider.setShowValue(true);
   StarSizeSlider.setShowLimits(true);
-  StarSizeSlider.setLimits(100, 75, 150);
+  StarSizeSlider.setLimits(75, 50, 150);
   StarSizeSlider.setShowTicks(true);
   StarSizeSlider.setNumberFormat(G4P.INTEGER, 0);
   StarSizeSlider.setOpaque(false);
@@ -202,8 +204,12 @@ public void createGUI(){
   CometsLabel.setText("Comets:");
   CometsLabel.setOpaque(false);
   SunMassSlider = new GSlider(window1, 6, 294, 100, 60, 10.0);
-  SunMassSlider.setLimits(0.5, 0.0, 1.0);
-  SunMassSlider.setNumberFormat(G4P.DECIMAL, 2);
+  SunMassSlider.setShowValue(true);
+  SunMassSlider.setShowLimits(true);
+  SunMassSlider.setLimits(10000, 9000, 15000);
+  SunMassSlider.setShowTicks(true);
+  SunMassSlider.setEasing(5.0);
+  SunMassSlider.setNumberFormat(G4P.INTEGER, 0);
   SunMassSlider.setOpaque(false);
   SunMassSlider.addEventHandler(this, "SunMass");
   SunMassLabel = new GLabel(window1, 6, 282, 90, 18);
@@ -244,18 +250,18 @@ public void createGUI(){
   AnimationSpeedSlider.setNumberFormat(G4P.DECIMAL, 2);
   AnimationSpeedSlider.setOpaque(false);
   AnimationSpeedSlider.addEventHandler(this, "Animation_Speed");
-  button1 = new GButton(window1, 330, 474, 80, 30);
-  button1.setText("Face text");
-  button1.addEventHandler(this, "button1_click1");
-  button2 = new GButton(window1, 450, 474, 80, 30);
-  button2.setText("Face text");
-  button2.addEventHandler(this, "button2_click1");
-  button3 = new GButton(window1, 330, 522, 80, 30);
-  button3.setText("Face text");
-  button3.addEventHandler(this, "button3_click1");
-  button4 = new GButton(window1, 450, 522, 80, 30);
-  button4.setText("Face text");
-  button4.addEventHandler(this, "button4_click1");
+  demo1button = new GButton(window1, 330, 474, 80, 30);
+  demo1button.setText("Demo 1");
+  demo1button.addEventHandler(this, "demo1");
+  demo2button = new GButton(window1, 450, 474, 80, 30);
+  demo2button.setText("Demo 2");
+  demo2button.addEventHandler(this, "demo2");
+  demo3button = new GButton(window1, 330, 522, 80, 30);
+  demo3button.setText("Demo 3");
+  demo3button.addEventHandler(this, "demo3");
+  demo4button = new GButton(window1, 450, 522, 80, 30);
+  demo4button.setText("Demo 4");
+  demo4button.addEventHandler(this, "demo4");
   DemoLabel = new GLabel(window1, 330, 444, 80, 20);
   DemoLabel.setText("Demos:");
   DemoLabel.setOpaque(false);
@@ -297,8 +303,8 @@ GSlider CometORSlider;
 GLabel CometRadiusLabel; 
 GLabel AnimationSpeedLabel; 
 GSlider AnimationSpeedSlider; 
-GButton button1; 
-GButton button2; 
-GButton button3; 
-GButton button4; 
+GButton demo1button; 
+GButton demo2button; 
+GButton demo3button; 
+GButton demo4button; 
 GLabel DemoLabel; 
