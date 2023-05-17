@@ -1,16 +1,16 @@
 class Star {
   //FIELDS
-  int mass;
-  int radius; //size
   String starType;
   color c;
+  float mass;
+  float radius; //size
+
   PVector pos = new PVector (halfway, halfway);
    
   //CONTRSUCTORS
-  Star(int m, int r, String st) {
+  Star(float m, float r) {
     this.mass = m;
     this.radius = r;
-    this.starType = st;
   }
   
   //METHODS

@@ -1,6 +1,6 @@
 class StarSystem {
   //fields
-  ArrayList<Star> centralBody = new ArrayList<Star>();
+  Star star;
   ArrayList<Planet> planets = new ArrayList<Planet>();
   ArrayList<AsteroidBelt> belts = new ArrayList<AsteroidBelt>();
   ArrayList<Comet> comets = new ArrayList<Comet>();
@@ -8,22 +8,16 @@ class StarSystem {
   int starMass = 0;
   
   //constructor
-  StarSystem(Star s1, Star s2) {
-    this.starMass = s1.mass + s2.mass;   
-    this.centralBody.add(s1);
-    this.centralBody.add(s2);
-  }
   
   StarSystem(Star s) {
-    this.starMass = s.mass;
-    this.centralBody.add(s);
+    this.star = s;
   }
   
   //methods  
   void addPlanet(Planet p) {
     this.planets.add(p);
     p.starSys = this;
-    p.speed = sqrt(g*this.starMass/p.orbitRad);
+    p.speed = sqrt(g*this.star.mass/p.orbitRad);
   }
   
   void removePlanet(Planet p) {
@@ -54,9 +48,7 @@ class StarSystem {
       this.belts.get(i).drawBelt();    
     }
     
-    for (int i = 0; i < this.centralBody.size(); i++) {
-      this.centralBody.get(i).drawStar();
-    }
+    this.star.drawStar();
     
     for (int i = 0; i < this.planets.size(); i++) {
       this.planets.get(i).drawPlanet();

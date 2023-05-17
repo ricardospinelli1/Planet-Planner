@@ -1,5 +1,6 @@
 class Planet {
   //fields
+  String name;
   float mass;
   int size;
   float orbitRad;
@@ -19,7 +20,8 @@ class Planet {
   boolean circularOrb;
   
   //constructor
-  Planet(float m, int s, float or, color pc) {
+  Planet(String n, float m, int s, float or, color pc) {
+    this.name = n;
     this.mass = m;
     this.size = s;
     this.orbitRad = or;
@@ -27,7 +29,8 @@ class Planet {
     this.circularOrb = true;
   }
   
-  Planet(float m, int s, float or, PVector v, color pc) {
+  Planet(String n, float m, int s, float or, PVector v, color pc) {
+    this.name = n;
     this.mass = m;    
     this.size = s;  
     this.orbitRad = or;
@@ -60,10 +63,10 @@ class Planet {
   } 
   
   void newtonPosition() {  //determine position using newton's gravity
-    PVector r = PVector.sub(this.pos, this.starSys.centralBody.get(0).pos);
+    PVector r = PVector.sub(this.pos, this.starSys.star.pos);
     PVector forceDir = r.normalize(null);
     float rSquared = r.magSq();
-    float forceMag = G*this.mass*this.starSys.starMass/rSquared;
+    float forceMag = G*this.mass*this.starSys.star.mass/rSquared;
     PVector force = PVector.mult(forceDir, forceMag);
     this.acc = PVector.div(force, this.mass);
     
