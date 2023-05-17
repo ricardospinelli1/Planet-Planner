@@ -1,12 +1,12 @@
 class Star {
   //FIELDS
-  int mass;
-  int radius; //size
+  float mass;
+  float radius; //size
   PVector pos = new PVector (halfway, halfway);
   //PVector speed; // possibly needed for Binary Stars
    
   //CONTRSUCTORS
-  Star(int m, int r) {
+  Star(float m, float r) {
     this.mass = m;
     this.radius = r;
 
