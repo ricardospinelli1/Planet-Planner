@@ -4,6 +4,7 @@ int t = 0;
 float g = 0.03;
 float halfway;
 boolean demo = false;
+String chosenStarType;
 
 //newton gravity global variables
 float G = -0.8;
@@ -18,11 +19,13 @@ Planet selectedPlanet;
 Planet mercury, venus, earth, mars, jupiter;
 Star sun; 
 AsteroidBelt astBelt;
+Comet test1;
 
 void setup() {
   size(900, 900);
   halfway = width/2.0;
   createGUI();
+
   defaultStar = new Star(10000, 65);
   defaultPlanet = new Planet("Default Name", 1, 20, 250, new PVector(5.6569, 0), color(0, 0, 220));
   sys = new StarSystem(defaultStar);
@@ -37,15 +40,14 @@ void setup() {
     sys = new StarSystem(sun);
     astBelt = new AsteroidBelt(700);
     
-    
-    
     sys.addPlanet(mercury);
     sys.addPlanet(venus);
     sys.addPlanet(earth);
     sys.addPlanet(mars);
     sys.addPlanet(jupiter);
     sys.addAsteroidBelt(astBelt);
-  }   
+    sys.addComet(test1);
+  }
 }
 
 void draw() {
