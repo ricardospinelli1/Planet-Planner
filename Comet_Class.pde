@@ -28,7 +28,7 @@ class Comet {
   }
   
   void updatePosition() {
-    PVector r = PVector.sub(this.pos, this.starSys.centralBody.get(0).pos);
+    PVector r = PVector.sub(this.pos, this.starSys.star.pos);
     PVector forceDir = r.normalize(null);
     float rSquared = r.magSq();
     float forceMag = G*this.mass*this.starSys.starMass/rSquared;

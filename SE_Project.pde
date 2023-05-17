@@ -26,7 +26,7 @@ void setup() {
   halfway = width/2.0;
   createGUI();
 
-  defaultStar = new Star(10000, 65);
+  defaultStar = new Star(10000, 65, "White dwarf");
   defaultPlanet = new Planet("Default Name", 1, 20, 250, new PVector(5.6569, 0), color(0, 0, 220));
   sys = new StarSystem(defaultStar);
   
@@ -36,7 +36,7 @@ void setup() {
     earth = new Planet("Earth", 1, 20, 250, new PVector(5.6569, 0), color(0, 0, 220));  //should have circular orbit
     mars = new Planet("Mars", 0.4, 7, 300, new PVector(5, 0), color(230, 0, 0));
     jupiter = new Planet("Jupiter", 50, 50, 400, new PVector(5, 0), color(250, 100, 0));
-    sun = new Star(10000, 65);
+    sun = new Star(10000, 65, "Yellow dwarf");
     sys = new StarSystem(sun);
     astBelt = new AsteroidBelt(700);
     
