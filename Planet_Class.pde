@@ -4,7 +4,7 @@ class Planet {
   float mass;
   int size;
   float orbitRad;
-  PVector pos = new PVector (0, 0);
+  PVector pos; //= new PVector (0, 0);
   float speed = 0.1;
   color planetCol;
   StarSystem starSys;
@@ -13,6 +13,7 @@ class Planet {
   float ape;
   float x, y, A, B;
   ArrayList<PVector> path = new ArrayList<PVector>();
+  ArrayList<Moon> moons = new ArrayList<Moon>();
    
   //fields for newton gravity
   PVector acc;
@@ -50,10 +51,15 @@ class Planet {
     fill(this.planetCol);
     circle(this.pos.x, this.pos.y, this.size);
     
+    for (int i = 0; i < this.moons.size(); i++) {
+      this.moons.get(i).drawMoon();
+    }
+    
     if (this.circularOrb)
       this.circularPosition();
     else
       this.newtonPosition();
+      
     
   }
   
@@ -112,5 +118,16 @@ class Planet {
       ellipse(this.x, this.y, this.A, this.B);
     }
     
+  }
+  
+  void addMoon(Moon m) {
+    this.moons.add(m);
+    m.planet = this;
+    m.speed = sqrt(g*this.mass/m.orbRad);
+    m.pos = new PVector(this.pos.x + m.orbRad, this.pos.y);
+  }
+  
+  void removeMoon(Moon m) {
+    this.moons.remove(m);
   }
 }
