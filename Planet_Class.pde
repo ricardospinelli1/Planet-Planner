@@ -2,7 +2,7 @@ class Planet {
   //fields
   String name;
   float mass;
-  int size;
+  float size;
   float orbitRad;
   PVector pos; //= new PVector (0, 0);
   float speed = 0.1;
@@ -21,7 +21,7 @@ class Planet {
   boolean circularOrb;
   
   //constructor
-  Planet(String n, float m, int s, float or, color pc) {
+  Planet(String n, float m, float s, float or, color pc) {
     this.name = n;
     this.mass = m;
     this.size = s;

@@ -7,7 +7,6 @@ class AsteroidBelt {
   //constructor
   AsteroidBelt(int or) {
     this.orbRadius = or;
-    this.name = "Default Name";
   }
   
   //methods  
