@@ -5,6 +5,7 @@ float g = 0.03;
 float halfway;
 boolean demo = false;
 String chosenStarType;
+ArrayList<String> allPlanetList = new ArrayList<String>();
 
 //newton gravity global variables
 float G = -0.8;
@@ -14,6 +15,7 @@ StarSystem sys;
 Star defaultStar;
 Planet defaultPlanet;
 Planet selectedPlanet;
+AsteroidBelt selectedBelt;
 
 
 Planet mercury, venus, earth, mars, jupiter;
@@ -25,6 +27,7 @@ void setup() {
   size(900, 900);
   halfway = width/2.0;
   createGUI();
+  //allPlanetList.add("None selected");
 
   defaultStar = new Star(10000, 65, "White dwarf");
   defaultPlanet = new Planet("Default Name", 1, 20, 250, new PVector(5.6569, 0), color(0, 0, 220));

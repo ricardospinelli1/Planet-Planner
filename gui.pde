@@ -19,10 +19,11 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:Windo
 } //_CODE_:Window1:347532:
 
 public void addPlanetClicked(GButton source, GEvent event) { //_CODE_:addPlanet:878009:
-  sys.addPlanet(new Planet("Default Name", 1, 20, 250, new PVector(5.6569, 0), color(0, 0, 220)));
+  sys.addPlanet(new Planet("Default Name " + str(sys.planets.size()+1), 1, 20, 250, new PVector(5.6569, 0), color(0, 0, 220)));
   selectedPlanet = sys.planets.get(sys.planets.size()-1);
-  PlanetName.setText("Default Name");
-  PlanetList.addItem("Default Name");
+  PlanetName.setText("Default Name " + str(sys.planets.size()));
+  PlanetList.addItem("Default Name "+ str(sys.planets.size()));
+  allPlanetList.add("Default Name "+ str(sys.planets.size()));
 } //_CODE_:addPlanet:878009:
 
 public void MassSliderDragged(GSlider source, GEvent event) { //_CODE_:Mass:947139:
@@ -39,6 +40,10 @@ public void PlanetListSelected(GDropList source, GEvent event) { //_CODE_:Planet
     if (PlanetList.getSelectedText().equals(sys.planets.get(i).name)) {
       selectedPlanet = sys.planets.get(i);
     }
+  }
+  
+  if (PlanetList.getSelectedText().equals("None selected")) {    
+    selectedPlanet = new Planet();  
   }
   
   PlanetName.setText(selectedPlanet.name);
@@ -81,13 +86,6 @@ public void PlanetSpeedDragged(GSlider source, GEvent event) { //_CODE_:PlanetSp
 } //_CODE_:PlanetSpeed:243815:
 
 public void PlanetNameChosen(GTextField source, GEvent event) { //_CODE_:PlanetName:640182:
-  //int lengthStr = PlanetName.getText().length();
-  //if (PlanetName.getText().substring(lengthStr-1, lengthStr).equals('\n')) {
-  //  PlanetList.addItem(PlanetName.getText());
-  //  selectedPlanet.name = PlanetName.getText();
-  //}
-  
-  //PlanetList.removeItem(0);
   
 } //_CODE_:PlanetName:640182:
 
@@ -112,8 +110,33 @@ public void StarRadiusDragged(GSlider source, GEvent event) { //_CODE_:StarRadiu
 
 public void SubmitNameClicked(GButton source, GEvent event) { //_CODE_:SubmitName:278753:
   //if (selectedPlanet.name.equals("Default Name"))
-  PlanetList.addItem(PlanetName.getText());
-  selectedPlanet.name = PlanetName.getText();
+  int ind = 0;
+  for (int i = 0; i < sys.planets.size(); i++) {
+    if (allPlanetList.get(i).equals(selectedPlanet.name)) {
+      ind = i;
+      i = sys.planets.size();
+    }
+  }
+  
+  if (!PlanetList.getSelectedText().equals("None selected")) {
+    println(ind+1);
+    PlanetList.removeItem(ind+1);
+    PlanetList.addItem(PlanetName.getText());
+    
+    
+    allPlanetList.set(ind+1, PlanetName.getText());
+    
+  //  for (int i = 1; i < allPlanetList.size()+1; i++) {
+  //    PlanetList.removeItem(i);
+  //  }
+  //  for (int i = 0; i < allPlanetList.size(); i++) {
+  //    PlanetList.addItem(allPlanetList.get(i));
+  //  }
+    
+    selectedPlanet.name = PlanetName.getText();
+  }
+  
+  
 } //_CODE_:SubmitName:278753:
 
 public void AddMoonClicked(GButton source, GEvent event) { //_CODE_:AddMoon:214185:
@@ -125,6 +148,23 @@ public void StarTypeChosen(GDropList source, GEvent event) { //_CODE_:StarType:6
   sys.star.setStarCol();
 } //_CODE_:StarType:608410:
 
+public void AddAsteroidClicked(GButton source, GEvent event) { //_CODE_:AddAsteroid:915959:
+  sys.addAsteroidBelt(new AsteroidBelt(500));
+  selectedBelt = sys.belts.get(sys.belts.size()-1);
+} //_CODE_:AddAsteroid:915959:
+
+public void BeltDistanceDragged(GSlider source, GEvent event) { //_CODE_:BeltDistance:352050:
+  selectedBelt.orbRadius = BeltDistance.getValueF()*1000;
+} //_CODE_:BeltDistance:352050:
+
+public void AsteroidListChosen(GDropList source, GEvent event) { //_CODE_:AsteroidList:663708:
+  for (int i = 0; i < sys.belts.size(); i++) {
+    if (AsteroidList.getSelectedText().equals(sys.belts.get(i).name)) {
+      selectedBelt = sys.belts.get(i);
+    }
+  }
+} //_CODE_:AsteroidList:663708:
+
 
 
 // Create all the GUI controls. 
@@ -134,11 +174,11 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  Window1 = GWindow.getWindow(this, "Mass", 0, 0, 400, 400, JAVA2D);
+  Window1 = GWindow.getWindow(this, "Mass", 0, 0, 400, 500, JAVA2D);
   Window1.noLoop();
   Window1.setActionOnClose(G4P.KEEP_OPEN);
   Window1.addDrawHandler(this, "win_draw1");
-  Planets = new GLabel(Window1, 5, 20, 80, 20);
+  Planets = new GLabel(Window1, 5, 40, 80, 20);
   Planets.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   Planets.setText("Planets");
   Planets.setOpaque(true);
@@ -155,10 +195,10 @@ public void createGUI(){
   Radius.setNumberFormat(G4P.DECIMAL, 2);
   Radius.setOpaque(false);
   Radius.addEventHandler(this, "RadiusSliderDragged");
-  PlanetList = new GDropList(Window1, 150, 60, 90, 80, 3, 10);
+  PlanetList = new GDropList(Window1, 150, 60, 100, 80, 3, 10);
   PlanetList.setItems(loadStrings("list_712299"), 0);
   PlanetList.addEventHandler(this, "PlanetListSelected");
-  PlanetColour = new GDropList(Window1, 280, 110, 90, 80, 3, 10);
+  PlanetColour = new GDropList(Window1, 280, 113, 90, 80, 3, 10);
   PlanetColour.setItems(loadStrings("list_682409"), 0);
   PlanetColour.addEventHandler(this, "PlanetColourChosen");
   PlanetSpeed = new GSlider(Window1, 10, 170, 100, 40, 10.0);
@@ -175,7 +215,7 @@ public void createGUI(){
   RadiusLabel = new GLabel(Window1, 150, 90, 80, 20);
   RadiusLabel.setText("Orbit Radius");
   RadiusLabel.setOpaque(false);
-  PlanetColourLabel = new GLabel(Window1, 280, 90, 80, 20);
+  PlanetColourLabel = new GLabel(Window1, 279, 91, 80, 20);
   PlanetColourLabel.setText("Planet Colour");
   PlanetColourLabel.setOpaque(false);
   PlanetSpeedLabel = new GLabel(Window1, 10, 160, 80, 20);
@@ -184,7 +224,7 @@ public void createGUI(){
   label1 = new GLabel(Window1, 140, 160, 80, 20);
   label1.setText("Planet Name");
   label1.setOpaque(false);
-  PauseButton = new GButton(Window1, 310, 10, 80, 30);
+  PauseButton = new GButton(Window1, 160, 10, 80, 30);
   PauseButton.setText("Pause");
   PauseButton.addEventHandler(this, "PauseButtonClicked");
   StarLabel = new GLabel(Window1, 10, 230, 80, 20);
@@ -210,12 +250,26 @@ public void createGUI(){
   SubmitName = new GButton(Window1, 270, 170, 60, 30);
   SubmitName.setText("Submit name");
   SubmitName.addEventHandler(this, "SubmitNameClicked");
-  AddMoon = new GButton(Window1, 280, 50, 80, 30);
+  AddMoon = new GButton(Window1, 281, 55, 80, 30);
   AddMoon.setText("Add moon to this planet");
   AddMoon.addEventHandler(this, "AddMoonClicked");
   StarType = new GDropList(Window1, 255, 260, 90, 80, 3, 10);
   StarType.setItems(loadStrings("list_608410"), 0);
   StarType.addEventHandler(this, "StarTypeChosen");
+  AddAsteroid = new GButton(Window1, 10, 320, 80, 30);
+  AddAsteroid.setText("Add Asteroid Belt");
+  AddAsteroid.addEventHandler(this, "AddAsteroidClicked");
+  BeltDistance = new GSlider(Window1, 10, 366, 100, 40, 10.0);
+  BeltDistance.setLimits(0.5, 0.0, 1.0);
+  BeltDistance.setNumberFormat(G4P.DECIMAL, 2);
+  BeltDistance.setOpaque(false);
+  BeltDistance.addEventHandler(this, "BeltDistanceDragged");
+  BeltDistanceLabel = new GLabel(Window1, 10, 350, 80, 20);
+  BeltDistanceLabel.setText("Orbit Radius");
+  BeltDistanceLabel.setOpaque(false);
+  AsteroidList = new GDropList(Window1, 122, 365, 90, 80, 3, 10);
+  AsteroidList.setItems(loadStrings("list_663708"), 0);
+  AsteroidList.addEventHandler(this, "AsteroidListChosen");
   Window1.loop();
 }
 
@@ -244,3 +298,7 @@ GLabel StarRadiusLabel;
 GButton SubmitName; 
 GButton AddMoon; 
 GDropList StarType; 
+GButton AddAsteroid; 
+GSlider BeltDistance; 
+GLabel BeltDistanceLabel; 
+GDropList AsteroidList; 

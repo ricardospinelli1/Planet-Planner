@@ -42,6 +42,18 @@ class Planet {
     this.ape = or;
   }
   
+  Planet() {
+    this.name = "None";
+    this.mass = 0;
+    this.size = 0;
+    this.orbitRad = 1000;
+    this.velocity = new PVector(0, 0);
+    this.planetCol = color(0);
+    this.pos = new PVector(2000, 2000);
+    this.circularOrb = true;
+    this.ape = 3000;
+  }
+  
   //methods  
   void drawPlanet() {
     if (this.showPath)
