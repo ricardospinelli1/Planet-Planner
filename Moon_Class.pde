@@ -6,6 +6,7 @@ class Moon {
   float speed; //assume circular orbit
   PVector pos;
   Planet planet;
+  int T = 0;
   
   //constructor
   Moon(float m, float or, float r) {
@@ -24,7 +25,8 @@ class Moon {
   }
   
   void updatePosition() {
-    this.pos.x = orbRad*cos(t*this.speed/this.orbRad) + this.planet.pos.x;    
-    this.pos.y = orbRad*sin(t*this.speed/this.orbRad) + this.planet.pos.y;   
+    this.pos.x = this.orbRad*cos(T*this.speed/this.orbRad) + this.planet.pos.x;    
+    this.pos.y = this.orbRad*sin(T*this.speed/this.orbRad) + this.planet.pos.y;
+    T++;
   }
 }

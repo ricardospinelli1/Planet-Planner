@@ -24,6 +24,7 @@ public void addPlanetClicked(GButton source, GEvent event) { //_CODE_:addPlanet:
   PlanetName.setText("Default Name " + str(sys.planets.size()));
   PlanetList.addItem("Default Name "+ str(sys.planets.size()));
   allPlanetList.add("Default Name "+ str(sys.planets.size()));
+  PlanetList.setSelected(allPlanetList.size());
 } //_CODE_:addPlanet:878009:
 
 public void MassSliderDragged(GSlider source, GEvent event) { //_CODE_:Mass:947139:
@@ -41,37 +42,30 @@ public void PlanetListSelected(GDropList source, GEvent event) { //_CODE_:Planet
       selectedPlanet = sys.planets.get(i);
     }
   }
-  
+
   if (PlanetList.getSelectedText().equals("None selected")) {    
-    selectedPlanet = new Planet();  
+    selectedPlanet = new Planet();
   }
-  
+
   PlanetName.setText(selectedPlanet.name);
 } //_CODE_:PlanetList:712299:
 
 public void PlanetColourChosen(GDropList source, GEvent event) { //_CODE_:PlanetColour:682409:
   if (PlanetColour.getSelectedText().equals("Red")) {
     selectedPlanet.planetCol = color(255, 0, 0);
-  }  
-  else if (PlanetColour.getSelectedText().equals("Orange")) {    
+  } else if (PlanetColour.getSelectedText().equals("Orange")) {    
     selectedPlanet.planetCol = color(255, 160, 0);
-  }
-  else if (PlanetColour.getSelectedText().equals("Yellow")) {
-    selectedPlanet.planetCol = color(255, 255, 0);  
-  }
-  else if (PlanetColour.getSelectedText().equals("Green")) {  
+  } else if (PlanetColour.getSelectedText().equals("Yellow")) {
+    selectedPlanet.planetCol = color(255, 255, 0);
+  } else if (PlanetColour.getSelectedText().equals("Green")) {  
     selectedPlanet.planetCol = color(0, 255, 0);
-  }
-  else if (PlanetColour.getSelectedText().equals("Blue")) {
+  } else if (PlanetColour.getSelectedText().equals("Blue")) {
     selectedPlanet.planetCol = color(0, 0, 255);
-  }
-  else if (PlanetColour.getSelectedText().equals("Purple")) {
+  } else if (PlanetColour.getSelectedText().equals("Purple")) {
     selectedPlanet.planetCol = color(200, 0, 255);
-  }
-  else if (PlanetColour.getSelectedText().equals("Grey")) {
+  } else if (PlanetColour.getSelectedText().equals("Grey")) {
     selectedPlanet.planetCol = color(130);
-  }
-  else if (PlanetColour.getSelectedText().equals("Random")){
+  } else if (PlanetColour.getSelectedText().equals("Random")) {
     int randRed = int(random(255));
     int randGreen = int(random(255));
     int randBlue = int(random(255));
@@ -86,15 +80,13 @@ public void PlanetSpeedDragged(GSlider source, GEvent event) { //_CODE_:PlanetSp
 } //_CODE_:PlanetSpeed:243815:
 
 public void PlanetNameChosen(GTextField source, GEvent event) { //_CODE_:PlanetName:640182:
-  
 } //_CODE_:PlanetName:640182:
 
 public void PauseButtonClicked(GButton source, GEvent event) { //_CODE_:PauseButton:725603:
   if (PauseButton.getText().equals("Pause")) {
     noLoop();
     PauseButton.setText("Resume");
-  }
-  else {
+  } else {
     loop();
     PauseButton.setText("Pause");
   }
@@ -109,24 +101,23 @@ public void StarRadiusDragged(GSlider source, GEvent event) { //_CODE_:StarRadiu
 } //_CODE_:StarRadius:406222:
 
 public void SubmitNameClicked(GButton source, GEvent event) { //_CODE_:SubmitName:278753:
-  //if (selectedPlanet.name.equals("Default Name"))
   int ind = 0;
-  for (int i = 0; i < sys.planets.size(); i++) {
+  for (int i = 0; i < allPlanetList.size(); i++) {
     if (allPlanetList.get(i).equals(selectedPlanet.name)) {
       ind = i;
       i = sys.planets.size();
     }
   }
-  
+
   if (!PlanetList.getSelectedText().equals("None selected")) {
-    println(ind+1);
+    //println(ind+1);
     PlanetList.removeItem(ind+1);
     PlanetList.addItem(PlanetName.getText());
-    
-    
-    allPlanetList.set(ind+1, PlanetName.getText());
+
+
+    allPlanetList.set(ind, PlanetName.getText());
     selectedPlanet.name = PlanetName.getText();
-  }  
+  }
 } //_CODE_:SubmitName:278753:
 
 public void AddMoonClicked(GButton source, GEvent event) { //_CODE_:AddMoon:214185:
@@ -139,42 +130,15 @@ public void StarTypeChosen(GDropList source, GEvent event) { //_CODE_:StarType:6
 } //_CODE_:StarType:608410:
 
 public void AddAsteroidClicked(GButton source, GEvent event) { //_CODE_:AddAsteroid:915959:
-  selectedBelt = new AsteroidBelt(500);
-  for (int i = 0; i < sys.belts.size(); i++) {
-    if (500 > sys.belts.get(i).orbRadius) {
-      sys.belts.add(i, selectedBelt);
-    }
-  }
-  if (sys.belts.size() == 0) {
-    sys.belts.add(selectedBelt);
-  }
-  selectedBelt.starSys = sys;
+  sys.addAsteroidBelt(new AsteroidBelt(500));
+  selectedBelt = sys.belts.get(sys.belts.size()-1);
   selectedBelt.name = "Asteroid Belt #" + str(sys.belts.size());
   AsteroidList.addItem(selectedBelt.name);
+  AsteroidList.setSelected(sys.belts.size());
 } //_CODE_:AddAsteroid:915959:
 
 public void BeltDistanceDragged(GSlider source, GEvent event) { //_CODE_:BeltDistance:352050:
   selectedBelt.orbRadius = BeltDistance.getValueF()*1000;
-  int ind = -1;
-  for (int i = 0; i < sys.belts.size(); i++) {
-    if (selectedBelt.name.equals(sys.belts.get(i).name)) {
-      ind = i;  
-      i = sys.belts.size();
-    }
-  }
-  for (int i = 0; i < sys.belts.size(); i++) {
-    if (sys.belts.get(i).orbRadius < selectedBelt.orbRadius) {
-
-      sys.belts.add(i, selectedBelt);
-           
-      sys.belts.remove(ind);      
-      if (ind > i)        
-        ind += 1; 
-      sys.belts.remove(ind);
-      i = sys.belts.size(); 
-    }
-  }
-  
 } //_CODE_:BeltDistance:352050:
 
 public void AsteroidListChosen(GDropList source, GEvent event) { //_CODE_:AsteroidList:663708:
@@ -189,15 +153,46 @@ public void clearButtonClicked(GButton source, GEvent event) { //_CODE_:clearBut
   for (int i = sys.planets.size(); i > 0; i--) {
     PlanetList.removeItem(i);
   }
+  for (int i = sys.belts.size(); i > 0; i--) {
+    AsteroidList.removeItem(i);
+  }
   sys.planets.clear();
   sys.belts.clear();
   sys.comets.clear();
   sys.star = new Star(10000, 65, "White dwarf");
+  PlanetName.setText("None selected");
+  allPlanetList.clear();
 } //_CODE_:clearButton:441861:
 
 public void PlanetSizeDragged(GSlider source, GEvent event) { //_CODE_:PlanetSize:407152:
   selectedPlanet.size = 50*PlanetSize.getValueF();
 } //_CODE_:PlanetSize:407152:
+
+public void DeletePlanetClicked(GButton source, GEvent event) { //_CODE_:DeletePlanet:885056:
+  for (int i = 0; i < sys.planets.size(); i++) {
+    if (selectedPlanet.name.equals(allPlanetList.get(i))) {
+      sys.removePlanet(selectedPlanet);
+      PlanetList.removeItem(i+1);
+    }
+  }
+} //_CODE_:DeletePlanet:885056:
+
+public void DeleteBeltClicked(GButton source, GEvent event) { //_CODE_:DeleteBelt:685590:
+  for (int i = 0; i < sys.belts.size(); i++) {
+    sys.removeAsteroidBelt(selectedBelt);
+    AsteroidList.removeItem(i+1);
+  }
+} //_CODE_:DeleteBelt:685590:
+
+public void DemoClicked(GButton source, GEvent event) { //_CODE_:Demo:811021:
+  setDemo();
+  PlanetList.addItem("Mercury");
+  PlanetList.addItem("Venus");
+  PlanetList.addItem("Earth");
+  PlanetList.addItem("Mars");
+  PlanetList.addItem("Jupiter");
+  AsteroidList.addItem("Asteroid Belt #1");
+} //_CODE_:Demo:811021:
 
 
 
@@ -212,7 +207,7 @@ public void createGUI(){
   Window1.noLoop();
   Window1.setActionOnClose(G4P.KEEP_OPEN);
   Window1.addDrawHandler(this, "win_draw1");
-  Planets = new GLabel(Window1, 5, 40, 80, 20);
+  Planets = new GLabel(Window1, 6, 30, 80, 20);
   Planets.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   Planets.setText("Planets");
   Planets.setOpaque(true);
@@ -258,54 +253,66 @@ public void createGUI(){
   label1 = new GLabel(Window1, 230, 44, 80, 20);
   label1.setText("Planet Name");
   label1.setOpaque(false);
-  PauseButton = new GButton(Window1, 139, 3, 80, 30);
+  PauseButton = new GButton(Window1, 139, 3, 80, 25);
   PauseButton.setText("Pause");
+  PauseButton.setLocalColorScheme(GCScheme.RED_SCHEME);
   PauseButton.addEventHandler(this, "PauseButtonClicked");
   StarLabel = new GLabel(Window1, 10, 230, 80, 20);
   StarLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   StarLabel.setText("Star");
-  StarLabel.setOpaque(false);
+  StarLabel.setLocalColorScheme(GCScheme.GOLD_SCHEME);
+  StarLabel.setOpaque(true);
   StarMass = new GSlider(Window1, 10, 260, 100, 40, 10.0);
   StarMass.setLimits(1.0, 1.0, 10.0);
   StarMass.setNumberFormat(G4P.DECIMAL, 2);
+  StarMass.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   StarMass.setOpaque(false);
   StarMass.addEventHandler(this, "StarMassDragged");
   StarRadius = new GSlider(Window1, 140, 260, 100, 40, 10.0);
   StarRadius.setLimits(0.5, 0.5, 1.0);
   StarRadius.setNumberFormat(G4P.DECIMAL, 2);
+  StarRadius.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   StarRadius.setOpaque(false);
   StarRadius.addEventHandler(this, "StarRadiusDragged");
   StarMassLabel = new GLabel(Window1, 10, 250, 80, 20);
   StarMassLabel.setText("Mass");
+  StarMassLabel.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   StarMassLabel.setOpaque(false);
   StarRadiusLabel = new GLabel(Window1, 140, 250, 80, 20);
   StarRadiusLabel.setText("Radius");
+  StarRadiusLabel.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   StarRadiusLabel.setOpaque(false);
   SubmitName = new GButton(Window1, 363, 59, 60, 30);
   SubmitName.setText("Submit name");
   SubmitName.addEventHandler(this, "SubmitNameClicked");
-  AddMoon = new GButton(Window1, 285, 162, 80, 30);
+  AddMoon = new GButton(Window1, 238, 161, 80, 30);
   AddMoon.setText("Add moon to this planet");
   AddMoon.addEventHandler(this, "AddMoonClicked");
   StarType = new GDropList(Window1, 255, 260, 90, 80, 3, 10);
   StarType.setItems(loadStrings("list_608410"), 0);
+  StarType.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   StarType.addEventHandler(this, "StarTypeChosen");
-  AddAsteroid = new GButton(Window1, 10, 320, 80, 30);
+  AddAsteroid = new GButton(Window1, 16, 348, 80, 30);
   AddAsteroid.setText("Add Asteroid Belt");
+  AddAsteroid.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   AddAsteroid.addEventHandler(this, "AddAsteroidClicked");
-  BeltDistance = new GSlider(Window1, 10, 366, 100, 40, 10.0);
+  BeltDistance = new GSlider(Window1, 171, 404, 100, 40, 10.0);
   BeltDistance.setLimits(0.5, 0.0, 1.0);
   BeltDistance.setNumberFormat(G4P.DECIMAL, 2);
+  BeltDistance.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   BeltDistance.setOpaque(false);
   BeltDistance.addEventHandler(this, "BeltDistanceDragged");
-  BeltDistanceLabel = new GLabel(Window1, 10, 350, 80, 20);
+  BeltDistanceLabel = new GLabel(Window1, 171, 386, 80, 20);
   BeltDistanceLabel.setText("Orbit Radius");
+  BeltDistanceLabel.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   BeltDistanceLabel.setOpaque(false);
-  AsteroidList = new GDropList(Window1, 122, 365, 90, 80, 3, 10);
+  AsteroidList = new GDropList(Window1, 13, 407, 100, 80, 3, 10);
   AsteroidList.setItems(loadStrings("list_663708"), 0);
+  AsteroidList.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   AsteroidList.addEventHandler(this, "AsteroidListChosen");
-  clearButton = new GButton(Window1, 240, 3, 80, 30);
+  clearButton = new GButton(Window1, 240, 3, 80, 25);
   clearButton.setText("Clear all");
+  clearButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   clearButton.addEventHandler(this, "clearButtonClicked");
   PlanetSize = new GSlider(Window1, 280, 106, 100, 40, 10.0);
   PlanetSize.setLimits(0.5, 0.0, 1.0);
@@ -315,6 +322,33 @@ public void createGUI(){
   PlanetSizeLabel = new GLabel(Window1, 279, 94, 100, 20);
   PlanetSizeLabel.setText("Planet Radius");
   PlanetSizeLabel.setOpaque(false);
+  DeletePlanet = new GButton(Window1, 340, 161, 80, 30);
+  DeletePlanet.setText("Delete Planet");
+  DeletePlanet.addEventHandler(this, "DeletePlanetClicked");
+  DeleteBelt = new GButton(Window1, 309, 402, 80, 30);
+  DeleteBelt.setText("Delete Asteroid Belt");
+  DeleteBelt.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  DeleteBelt.addEventHandler(this, "DeleteBeltClicked");
+  SelectPlanetLabel = new GLabel(Window1, 116, 40, 100, 20);
+  SelectPlanetLabel.setText("Select planet...");
+  SelectPlanetLabel.setOpaque(false);
+  StarTypeLabel = new GLabel(Window1, 255, 240, 80, 20);
+  StarTypeLabel.setText("Star Type");
+  StarTypeLabel.setLocalColorScheme(GCScheme.GOLD_SCHEME);
+  StarTypeLabel.setOpaque(false);
+  SelectAsteroidLabel = new GLabel(Window1, 12, 386, 130, 20);
+  SelectAsteroidLabel.setText("Select asteroid belt...");
+  SelectAsteroidLabel.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  SelectAsteroidLabel.setOpaque(false);
+  AsteroidLabel = new GLabel(Window1, 13, 324, 80, 20);
+  AsteroidLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  AsteroidLabel.setText("Asteroid Belts");
+  AsteroidLabel.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  AsteroidLabel.setOpaque(true);
+  Demo = new GButton(Window1, 169, 460, 80, 30);
+  Demo.setText("Demo");
+  Demo.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  Demo.addEventHandler(this, "DemoClicked");
   Window1.loop();
 }
 
@@ -350,3 +384,10 @@ GDropList AsteroidList;
 GButton clearButton; 
 GSlider PlanetSize; 
 GLabel PlanetSizeLabel; 
+GButton DeletePlanet; 
+GButton DeleteBelt; 
+GLabel SelectPlanetLabel; 
+GLabel StarTypeLabel; 
+GLabel SelectAsteroidLabel; 
+GLabel AsteroidLabel; 
+GButton Demo; 

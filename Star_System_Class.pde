@@ -3,6 +3,7 @@ class StarSystem {
   Star star;
   ArrayList<Planet> planets = new ArrayList<Planet>();
   ArrayList<AsteroidBelt> belts = new ArrayList<AsteroidBelt>();
+  FloatList beltRads = new FloatList();
   ArrayList<Comet> comets = new ArrayList<Comet>();
   
   int starMass = 0;
@@ -45,7 +46,13 @@ class StarSystem {
   
   void drawSystem() { 
     for (int i = 0; i < this.belts.size(); i++) {
-      this.belts.get(i).drawBelt();    
+      this.beltRads.append(this.belts.get(i).orbRadius);
+    }
+    this.beltRads.sort();
+    this.beltRads.reverse();
+    for (int i = 0; i < this.beltRads.size(); i++) {
+      AsteroidBelt drawn = new AsteroidBelt(this.beltRads.get(i));
+      drawn.drawBelt();  
     }
     
     this.star.drawStar();
@@ -59,6 +66,7 @@ class StarSystem {
     }
         
     t++;
+    this.beltRads.clear();
   }
 
 }

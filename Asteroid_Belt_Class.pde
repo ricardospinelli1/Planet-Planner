@@ -5,7 +5,7 @@ class AsteroidBelt {
   StarSystem starSys;
   
   //constructor
-  AsteroidBelt(int or) {
+  AsteroidBelt(float or) {
     this.orbRadius = or;
   }
   
