@@ -1,11 +1,11 @@
+//STAR CLASS
 class Star {
   //FIELDS
-  String starType = "White dwarf";
-  color col = color(255);
-  float mass;
-  float radius; //size
-
-  PVector pos = new PVector (halfway, halfway);
+  String starType;  //type of star (red dwarf, yellow dwarf, white dwarf)
+  color col;    //colour, determined by starType
+  float mass;   //mass
+  float radius; //size of star
+  PVector pos = new PVector (halfway, halfway);  //star always positioned in the centre of screen
    
   //CONTRSUCTORS
   Star(float m, float r, String t) {
@@ -13,30 +13,25 @@ class Star {
     this.radius = r;
     this.starType = t;
     
-    if(this.starType.equals("Yellow dwarf"))      
-      this.col = color(252, 186, 3);
-    else if(this.starType.equals("White dwarf"))       
-      this.col = color(255, 255, 255); 
-    else if (this.starType.equals("Red dwarf"))       
-      this.col = color(245, 51, 12);
-    
+    //assign colour based on type
+    setStarCol();
   }
   
   //METHODS
-  void drawStar() { // temporary variables to fill in for now
+  void drawStar() {  //draw the star
     fill(this.col); 
     noStroke();
     circle(this.pos.x, this.pos.y, this.radius);
   } 
   
-  void setStarCol() {  // user selected star type will determine color of star
+  void setStarCol() {  //set the colour of the star based on star type 
     if(this.starType.equals("Yellow dwarf"))
-      this.col = color(252, 186, 3);
+      this.col = color(252, 186, 3);  //yellowish colour
       
     else if(this.starType.equals("Red dwarf")) 
-      this.col = color(245, 51, 12);
+      this.col = color(245, 51, 12);  //reddish colour
       
     else if(this.starType.equals("White dwarf")) 
-      this.col = color(255, 255, 255);     
+      this.col = color(255);   //white  
   }
 }
